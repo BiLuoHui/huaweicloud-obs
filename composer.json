@@ -1,0 +1,24 @@
+{
+  "name": "bihuohui/huaweicloud-obs",
+  "description": "华为云 OBS PHP 版 SDK",
+  "type": "library",
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": {
+      "Bihuohui\\HuaweicloudObs\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "碧落晖",
+      "email": "yeyixianyang@163.com"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "guzzlehttp/guzzle": "^7.8",
+    "ext-curl": "*",
+    "ext-simplexml": "*",
+    "ext-iconv": "*"
+  }
+}
