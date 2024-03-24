@@ -13,7 +13,7 @@ class ObsStream implements StreamInterface
 
     private int $readCount = 0;
 
-    public function __construct(protected StreamInterface $stream, protected float $expectedLen)
+    public function __construct(protected StreamInterface $stream, protected ?float $expectedLen)
     {
     }
 
