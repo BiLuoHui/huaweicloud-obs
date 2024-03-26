@@ -95,10 +95,10 @@ trait Response
                         $obsException->setCode(strval($data['code']));
                     }
                     if ($data['message']) {
-                        $obsException->setCode(strval($data['message']));
+                        $obsException->setMessage(strval($data['message']));
                     }
                 } elseif ($data && strlen($data)) {
-                    $obsException->setCode("Invalid response data，since it is not json data");
+                    $obsException->setMessage("Invalid response data，since it is not json data");
                 }
             }
         } finally {
@@ -106,7 +106,7 @@ trait Response
         }
     }
 
-    private function parseXmlToException($body, $obsException): void
+    private function parseXmlToException($body, ObsException $obsException): void
     {
         try {
             $xmlErrorBody = trim($body->getContents());
@@ -115,16 +115,13 @@ trait Response
                 if ($xml) {
                     $prefix = $this->getXpathPrefix($xml);
                     if ($tempXml = $xml->xpath('//' . $prefix . 'Code')) {
-                        $obsException->setExceptionCode(strval($tempXml[0]));
+                        $obsException->setCode(strval($tempXml[0]));
                     }
                     if ($tempXml = $xml->xpath('//' . $prefix . 'RequestId')) {
                         $obsException->setRequestId(strval($tempXml[0]));
                     }
                     if ($tempXml = $xml->xpath('//' . $prefix . 'Message')) {
-                        $obsException->setExceptionMessage(strval($tempXml[0]));
-                    }
-                    if ($tempXml = $xml->xpath('//' . $prefix . 'HostId')) {
-                        $obsException->setHostId(strval($tempXml[0]));
+                        $obsException->setMessage(strval($tempXml[0]));
                     }
                 }
             }

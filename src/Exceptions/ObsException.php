@@ -61,6 +61,11 @@ class ObsException extends RuntimeException
         $this->code = $code;
     }
 
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
+    }
+
     public function statusCode(): int
     {
         return $this->response ? $this->response->getStatusCode() : -1;
